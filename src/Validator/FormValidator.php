@@ -111,11 +111,11 @@ class FormValidator
     {
         $isValid = true;
         // validator chain
-        foreach ($validatorList as $filter) {
-            $validatorClass = $filter['name'];
-            $validatorOptions = $filter['options'];
+        foreach ($validatorList as $validator) {
+            $validatorClass = $validator['name'];
+            $validatorOptions = $validator['options'];
             $validator = new $validatorClass($validatorOptions);
-            $this->callDotFilter($validator, [$key=> $value]);
+            $isValid = $this->callDotFilter($validator, [$key=> $value]);
         }
         return $isValid;
     }
@@ -135,14 +135,13 @@ class FormValidator
                 if ($field['required'] == false && !isset($values[$field['name']])) {
                     continue;
                 }
+                
                 $values[$field['name']] = $this->callFilter($field['filters'], $values[$field['name']]);
-    
                 
                 // alternative with no error messages:
-                $this->callValidator($field['validators'], $values[$field['name']], $field['name']);
+                $isValid = $this->callValidator($field['validators'], $values[$field['name']], $field['name']);
             }
         }
-        $this->data = $values;
         return $isValid;
     }
     
@@ -155,9 +154,11 @@ class FormValidator
      */
     private function callDotFilter($validator, $values)
     {
-		$dotFilter = new Dot_Filter(array('validator' => $validator, 'values' => $values));
-		$dotFilter->filter();
-		$this->data = array_merge($this->data, $dotFilter->getData());
-		$this->error = array_merge($this->error, $dotFilter->getError());
+        $dotFilter = new Dot_Filter(array('validator' => $validator, 'values' => $values));
+        $dotFilter->filter();
+        $this->data = array_merge($this->data, $dotFilter->getData());
+        $this->error = array_merge($this->error, $dotFilter->getError());
+        $isValid = empty($dotFilter->getError());
+        return $isValid;
     }
 }
