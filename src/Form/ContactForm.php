@@ -7,8 +7,8 @@
 
 namespace GSRO\DotKernel\Form2\Form;
 
-use GSRO\DotKernel\Form2\Fieldset\Message;
 use GSRO\DotKernel\Form2\Fieldset\PersonalData;
+use GSRO\DotKernel\Form2\Fieldset\SimpleMessage;
 
 class ContactForm implements FormInterface
 {
@@ -18,7 +18,7 @@ class ContactForm implements FormInterface
     {
         $this->fieldsetList = $fieldsetList ?? [
             new PersonalData(),
-            new Message(),
+            new SimpleMessage(),
         ];
     }
 }
