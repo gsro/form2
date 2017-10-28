@@ -1,6 +1,6 @@
 {
-    "name": "gsro/mvc2",
-    "description": "Modern MVC for DotKernel1 Applications",
+    "name": "gsro/form2",
+    "description": "Form2 - Form Validation Helper for DK1/DK3",
     "type": "library",
     "license": "MIT",
     "version": "v1.0.0",
