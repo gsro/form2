@@ -1,0 +1,20 @@
+{
+    "name": "gsro/mvc2",
+    "description": "Modern MVC for DotKernel1 Applications",
+    "type": "library",
+    "license": "MIT",
+    "version": "v1.0.0",
+    "authors": [
+        {
+            "name": "gsro",
+            "email": "git@gabisuciu.ro"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+	"autoload": {
+		"psr-4": {
+			"GSRO\\DotKernel\\Form2\\": "src"
+		}
+	}
+}
