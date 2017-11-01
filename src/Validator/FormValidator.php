@@ -128,7 +128,7 @@ class FormValidator
             foreach ($fieldset->getOptions() as $field) {
                 // required, but missing
                 if ($field['required'] == true && !isset($values[$field['name']])) {
-                    $this->errors[] = [$field['name'] . 'is required'];
+                    $this->error = array_merge($this->error, ['Field: ' . $field['name'] . ' is required']);
                     continue;
                 }
                 // missing, but not required
