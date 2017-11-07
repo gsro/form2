@@ -25,7 +25,7 @@ trait FieldsetTrait
      * @param array $options
      * @return PersonalData
      */
-    public function setOptions(array $options): PersonalData
+    public function setOptions(array $options)
     {
         $this->options = $options;
         return $this;
